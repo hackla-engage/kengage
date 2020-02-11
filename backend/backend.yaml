@@ -1,0 +1,133 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: backend
+  namespace: default
+  labels:
+    app: backend
+spec:
+  ports:
+  - port: 80
+    targetPort: 8000
+    protocol: TCP
+    name: http
+  selector:
+    app: backend
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: backend
+  namespace: default
+  labels:
+    app: backend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: backend
+  template:
+    metadata:
+      labels:
+        app: backend
+    spec:
+      dnsPolicy: ClusterFirst
+      restartPolicy: Always
+      containers:
+      - name: backend
+        image: hack4laengage/engage_backend_service
+        imagePullPolicy: Always
+        resources:
+          limits:
+            cpu: "250m"
+            memory: "1024Mi"
+        ports:
+        - containerPort: 8000
+          protocol: TCP
+          name: http
+        env:
+        - name: mongo_initdb_root_username
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo_initdb_root_username
+        - name: mongo_initdb_root_password
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo_initdb_root_password
+        - name: mongo_initdb_database
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo_initdb_database
+        - name: mongo_host
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo_host
+        - name: mongo_uri_format
+          valueFrom:
+            secretKeyRef:
+              name: mongo-secrets
+              key: mongo_uri_format
+        - name: kafka_hostname
+          valueFrom:
+            secretKeyRef:
+              name: kafka-secrets
+              key: kafka_hostname
+        - name: kafka_port
+          valueFrom:
+            secretKeyRef:
+              name: kafka-secrets
+              key: kafka_port
+        - name: coaching_topic
+          valueFrom:
+            secretKeyRef:
+              name: kafka-secrets
+              key: coaching_topic
+        - name: analyze_topic
+          valueFrom:
+            secretKeyRef:
+              name: kafka-secrets
+              key: analyze_topic
+        - name: redis_hostname
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis_hostname
+        - name: redis-password
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis-password
+        - name: redis_port
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis_port
+        - name: redis_db_0
+          valueFrom:
+            secretKeyRef:
+              name: redis-secrets
+              key: redis_db_0
+        - name: python_port
+          valueFrom:
+            secretKeyRef:
+              name: go-upful-language-secrets
+              key: python_port
+        - name: python_hostname
+          valueFrom:
+            secretKeyRef:
+              name: go-upful-language-secrets
+              key: python_hostname
+        - name: language_debug
+          valueFrom:
+            secretKeyRef:
+              name: go-upful-language-secrets
+              key: language_debug
+        - name: public_key
+          valueFrom:
+            secretKeyRef:
+              name: keys
+              key: public_key

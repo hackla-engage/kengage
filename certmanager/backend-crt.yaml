@@ -1,0 +1,11 @@
+apiVersion: cert-manager.io/v1alpha2
+kind: Certificate
+metadata:
+  name: backend-cert
+  namespace: default
+spec:
+  secretName: backend-cert
+  issuerRef:
+    name: letsencrypt-prod
+  dnsNames:
+  - backend.engage.town

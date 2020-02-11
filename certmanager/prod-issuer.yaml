@@ -1,0 +1,18 @@
+  apiVersion: cert-manager.io/v1alpha2
+  kind: Issuer
+  metadata:
+    name: letsencrypt-prod
+  spec:
+    acme:
+      email: engage@engage.town
+      server: https://acme-v02.api.letsencrypt.org/directory
+      privateKeySecretRef:
+        # Secret resource used to store the account's private key.
+        name: letsencrypt-prod
+      solvers:
+      - dns01:
+          clouddns:
+              project: engage-main
+              serviceAccountSecretRef:
+                name: clouddns-dns01-solver-svc-acct
+                key: key.json
