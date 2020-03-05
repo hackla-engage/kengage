@@ -118,4 +118,3 @@ spec:
               secretKeyRef:
                 name: engage-scheduler-secrets
                 key: MJ_API_SECRET
-
