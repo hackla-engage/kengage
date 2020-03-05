@@ -46,88 +46,73 @@ spec:
           protocol: TCP
           name: http
         env:
-        - name: mongo_initdb_root_username
+        - name: DJANGO_SECRET_KEY
           valueFrom:
             secretKeyRef:
-              name: mongo-secrets
-              key: mongo_initdb_root_username
-        - name: mongo_initdb_root_password
+              name: backend-secrets
+              key: DJANGO_SECRET_KEY
+        - name: ENGAGE_SWAGGER_URL
           valueFrom:
             secretKeyRef:
-              name: mongo-secrets
-              key: mongo_initdb_root_password
-        - name: mongo_initdb_database
+              name: backend-secrets
+              key: ENGAGE_SWAGGER_URL
+        - name: MAILCHIMP_KEY
           valueFrom:
             secretKeyRef:
-              name: mongo-secrets
-              key: mongo_initdb_database
-        - name: mongo_host
+              name: backend-secrets
+              key: MAILCHIMP_KEY
+        - name: MAILCHIMP_REGION
           valueFrom:
             secretKeyRef:
-              name: mongo-secrets
-              key: mongo_host
-        - name: mongo_uri_format
+              name: backend-secrets
+              key: MAILCHIMP_REGION
+        - name: MAILCHIMP_USER
           valueFrom:
             secretKeyRef:
-              name: mongo-secrets
-              key: mongo_uri_format
-        - name: kafka_hostname
+              name: backend-secrets
+              key: MAILCHIMP_USER
+        - name: RECAPTCHAKEY
           valueFrom:
             secretKeyRef:
-              name: kafka-secrets
-              key: kafka_hostname
-        - name: kafka_port
-          valueFrom:
-            secretKeyRef:
-              name: kafka-secrets
-              key: kafka_port
-        - name: coaching_topic
-          valueFrom:
-            secretKeyRef:
-              name: kafka-secrets
-              key: coaching_topic
-        - name: analyze_topic
-          valueFrom:
-            secretKeyRef:
-              name: kafka-secrets
-              key: analyze_topic
-        - name: redis_hostname
+              name: backend-secrets
+              key: RECAPTCHAKEY
+        - name: REDIS_HOSTNAME 
           valueFrom:
             secretKeyRef:
               name: redis-secrets
-              key: redis_hostname
-        - name: redis-password
+              key: REDIS_HOSTNAME
+        - name: REDIS_PASSWORD
           valueFrom:
             secretKeyRef:
               name: redis-secrets
-              key: redis-password
-        - name: redis_port
+              key: REDIS_PASSWORD
+        - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
-              name: redis-secrets
-              key: redis_port
-        - name: redis_db_0
+              name: aws-secrets
+              key: AWS_ACCESS_KEY_ID
+        - name: AWS_SECRET_ACCESS_KEY
           valueFrom:
             secretKeyRef:
-              name: redis-secrets
-              key: redis_db_0
-        - name: python_port
+              name: aws-secrets
+              key: AWS_SECRET_ACCESS_KEY
+        - name: 
           valueFrom:
             secretKeyRef:
-              name: go-upful-language-secrets
-              key: python_port
-        - name: python_hostname
+              name: -secrets
+              key: 
+        - name: 
           valueFrom:
             secretKeyRef:
-              name: go-upful-language-secrets
-              key: python_hostname
-        - name: language_debug
+              name: -secrets
+              key:
+        - name: 
           valueFrom:
             secretKeyRef:
-              name: go-upful-language-secrets
-              key: language_debug
-        - name: public_key
+              name: -secrets
+              key: 
+        - name: 
           valueFrom:
             secretKeyRef:
-              name: keys
-              key: public_key
+              name: -secrets
+              key:
