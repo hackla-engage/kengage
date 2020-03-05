@@ -5,12 +5,12 @@ metadata:
   annotations:
     kubernetes.io/ingress.class: nginx
     kubernetes.io/tls-acme: 'true'
-    certmanager.k8s.io/cluster-issuer: letsencrypt-prod
+    certmanager.k8s.io/issuer: letsencrypt-prod
 spec:
   tls:
   - hosts:
     - backend.engage.town
-    secretName: backend-crt
+    secretName: backend-cert
   rules:
   - host: backend.engage.town
     http:

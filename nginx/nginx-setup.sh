@@ -1,4 +1,4 @@
-!/bin/sh
+!/bin/bash
 ###
 # Requires helm installed and tiller pod running
 ###
