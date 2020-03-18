@@ -17,6 +17,7 @@ spec:
       containers:
       - name: engage-scheduler
         image: hack4laengage/engage_scheduler:latest
+        imagePullPolicy: Always
         env:
           - name: POSTGRES_HOST
             valueFrom:
@@ -46,7 +47,7 @@ spec:
           - name: ENGAGE_TEST
             valueFrom:
               secretKeyRef:
-                name: engage-scheduler-secrets
+                name: engage-secrets
                 key: ENGAGE_TEST
           - name: ES_ENABLED
             valueFrom:
@@ -98,23 +99,43 @@ spec:
               secretKeyRef:
                 name: engage-scheduler-secrets
                 key: TWITTER_ACCESS_TOKEN_SECRET
+          - name: ENGAGE_DEBUG
+            valueFrom:
+              secretKeyRef:
+                name: engage-secrets
+                key: ENGAGE_DEBUG
           - name: SCRAPER_DEBUG
             valueFrom:
               secretKeyRef:
-                name: engage-scheduler-secrets
+                name: engage-secrets
                 key: SCRAPER_DEBUG
           - name: SCRAPER_VERBOSE_DEBUG
             valueFrom:
               secretKeyRef:
-                name: engage-scheduler-secrets
+                name: engage-secrets
                 key: SCRAPER_VERBOSE_DEBUG
           - name: MJ_API_KEY
             valueFrom:
               secretKeyRef:
-                name: engage-scheduler-secrets
+                name: mj-secrets
                 key: MJ_API_KEY
           - name: MJ_API_SECRET
             valueFrom:
               secretKeyRef:
-                name: engage-scheduler-secrets
+                name: mj-secrets
                 key: MJ_API_SECRET
+          - name: S3_ENABLED
+            valueFrom:
+              secretKeyRef:
+                name: engage-scheduler-secrets
+                key: S3_ENABLED
+          - name: S3_access_key_ID
+            valueFrom:
+              secretKeyRef:
+                name: engage-scheduler-secrets
+                key: S3_access_key_ID
+          - name: S3_secret_access_key
+            valueFrom:
+              secretKeyRef:
+                name: engage-scheduler-secrets
+                key: S3_secret_access_key

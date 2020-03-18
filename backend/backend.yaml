@@ -46,6 +46,41 @@ spec:
           protocol: TCP
           name: http
         env:
+        - name: ENGAGE_DEBUG
+          valueFrom:
+            secretKeyRef:
+              name: engage-secrets
+              key: ENGAGE_DEBUG
+        - name: ENGAGE_TEST
+          valueFrom:
+            secretKeyRef:
+              name: engage-secrets
+              key: ENGAGE_TEST
+        - name: POSTGRES_USER
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: POSTGRES_USER
+        - name: POSTGRES_PASSWORD
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: POSTGRES_PASSWORD
+        - name: POSTGRES_HOST
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: POSTGRES_HOST
+        - name: POSTGRES_PORT
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: POSTGRES_PORT
+        - name: POSTGRES_DB
+          valueFrom:
+            secretKeyRef:
+              name: postgres-secrets
+              key: POSTGRES_DB
         - name: DJANGO_SECRET_KEY
           valueFrom:
             secretKeyRef:
@@ -76,16 +111,6 @@ spec:
             secretKeyRef:
               name: backend-secrets
               key: RECAPTCHAKEY
-        - name: REDIS_HOSTNAME 
-          valueFrom:
-            secretKeyRef:
-              name: redis-secrets
-              key: REDIS_HOSTNAME
-        - name: REDIS_PASSWORD
-          valueFrom:
-            secretKeyRef:
-              name: redis-secrets
-              key: REDIS_PASSWORD
         - name: AWS_ACCESS_KEY_ID
           valueFrom:
             secretKeyRef:
@@ -96,23 +121,13 @@ spec:
             secretKeyRef:
               name: aws-secrets
               key: AWS_SECRET_ACCESS_KEY
-        - name: 
+        - name: MJ_API_KEY 
           valueFrom:
             secretKeyRef:
-              name: -secrets
-              key: 
-        - name: 
+              name: mj-secrets
+              key: MJ_API_KEY
+        - name: MJ_API_SECRET
           valueFrom:
             secretKeyRef:
-              name: -secrets
-              key:
-        - name: 
-          valueFrom:
-            secretKeyRef:
-              name: -secrets
-              key: 
-        - name: 
-          valueFrom:
-            secretKeyRef:
-              name: -secrets
-              key:
+              name: mj-secrets
+              key: MJ_API_SECRET
